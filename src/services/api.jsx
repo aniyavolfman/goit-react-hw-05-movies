@@ -18,3 +18,9 @@ export async function requestTrendingFilms(page) {
   });
   return results;
 }
+
+
+export async function requestFilmDetails(id) {
+    const response = await trendingFilmsAPI.get(`movie/${id}`);
+    return response;
+}

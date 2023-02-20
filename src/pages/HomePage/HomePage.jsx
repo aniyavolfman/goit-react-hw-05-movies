@@ -21,7 +21,7 @@ export function HomePage() {
   }, []);
 
   return (
-    <>
+    <section>
       <h1>Trending today</h1>
       <ul>
         {trendingFilms.map(el => (
@@ -30,6 +30,6 @@ export function HomePage() {
           </li>
         ))}
       </ul>
-    </>
+    </section>
   );
 }

@@ -14,7 +14,7 @@ export function MovieDetails() {
     async function fetchFilmByID(id) {
       try {
         const {
-          data: { poster_path, title, vote_average, overview, genres },
+          poster_path, title, vote_average, overview, genres,
         } = await requestFilmDetails(id);
 
         setSrc('https://image.tmdb.org/t/p/w500/' + poster_path);

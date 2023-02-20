@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
 import { requestFilmDetails } from '../../services/api';
 
 export function MovieDetails() {
@@ -21,11 +21,10 @@ export function MovieDetails() {
         setTitle(title);
         setVote(Math.round((Number(vote_average) * 100) / 10));
         setOverview(overview);
-          
+
         const genresArray = [];
         genres.map(el => genresArray.push(el.name));
         setGenres(genresArray.join(' '));
-          
       } catch (error) {
         console.log(error.message);
       }
@@ -35,6 +34,7 @@ export function MovieDetails() {
 
   return (
     <>
+      <Link to="/">Go Back</Link>
       <img src={src} alt={title} />
       <h1>{title}</h1>
       <p>User Score: {vote}%</p>
@@ -42,6 +42,16 @@ export function MovieDetails() {
       <p>{overview}</p>
       <h3>Genres</h3>
       <p>{genres}</p>
+      <p>Additional information</p>
+      <ul>
+        <li>
+          <NavLink to="cast">Cast</NavLink>
+        </li>
+        <li>
+          <NavLink to="reviews">reviews</NavLink>
+        </li>
+      </ul>
+      <Outlet />
     </>
   );
 }

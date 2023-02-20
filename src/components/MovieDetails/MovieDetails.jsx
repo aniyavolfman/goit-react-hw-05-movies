@@ -34,23 +34,27 @@ export function MovieDetails() {
 
   return (
     <>
-      <Link to="/">Go Back</Link>
-      <img src={src} alt={title} />
-      <h1>{title}</h1>
-      <p>User Score: {vote}%</p>
-      <h2>Overview</h2>
-      <p>{overview}</p>
-      <h3>Genres</h3>
-      <p>{genres}</p>
-      <p>Additional information</p>
-      <ul>
-        <li>
-          <NavLink to="cast">Cast</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">reviews</NavLink>
-        </li>
-      </ul>
+          <Link to="/">Go Back</Link>
+          
+      {title && (<>
+          <img src={src} alt={title} />
+          <h1>{title}</h1>
+          <p>User Score: {vote}%</p>
+          <h2>Overview</h2>
+          <p>{overview}</p>
+          <h3>Genres</h3>
+          <p>{genres}</p>
+          <p>Additional information</p>
+          <ul>
+            <li>
+              <NavLink to="cast">Cast</NavLink>
+            </li>
+            <li>
+              <NavLink to="reviews">reviews</NavLink>
+            </li>
+          </ul>
+          </>)}
+          {!title && (<p>Sorry! No such movie.</p>)}
       <Outlet />
     </>
   );

@@ -36,3 +36,10 @@ export async function requestFilmReviews(id) {
   } = await filmsAPI.get(`movie/${id}/reviews`);
   return results;
 }
+
+export async function requestPostsByQuery(query) {
+  const { data: {results} } = await filmsAPI.get(`/search/movie`, {
+    params: { query: query },
+  });
+  return results;
+}

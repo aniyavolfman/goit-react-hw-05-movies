@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import { requestFilmDetails } from '../../services/api';
+import { GoBack } from 'components/GoBack/GoBack';
 
-export function MovieDetails() {
+export default function MovieDetails() {
   const { movieId } = useParams();
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');
@@ -34,9 +35,9 @@ export function MovieDetails() {
 
   return (
     <>
-          <Link to="/">Go Back</Link>
-          
-      {title && (<>
+      <GoBack />
+      {title && (
+        <>
           <img src={src} alt={title} />
           <h1>{title}</h1>
           <p>User Score: {vote}%</p>
@@ -53,8 +54,9 @@ export function MovieDetails() {
               <NavLink to="reviews">reviews</NavLink>
             </li>
           </ul>
-          </>)}
-          {!title && (<p>Sorry! No such movie.</p>)}
+        </>
+      )}
+      {!title && <p>Sorry! No such movie.</p>}
       <Outlet />
     </>
   );

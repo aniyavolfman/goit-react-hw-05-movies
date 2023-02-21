@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 
 export function SearchForm({ onSubmit, searchQuery }) {
   const searhRef = useRef();
@@ -16,3 +17,8 @@ export function SearchForm({ onSubmit, searchQuery }) {
     </form>
   );
 }
+
+SearchForm.propTypes = {
+  searchQuery: PropTypes.string,
+  onSubmit: PropTypes.func,
+};

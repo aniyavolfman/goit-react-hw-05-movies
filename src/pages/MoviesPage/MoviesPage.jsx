@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm'
 import { requestPostsByQuery } from 'services/api';
+import { StyledUl } from './MoviesPage.styled';
 
 export default function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,15 +32,15 @@ export default function MoviesPage() {
   return (
     <section>
       <SearchForm onSubmit={onSubmit} searchQuery={searchQuery} />
-      <ul>
+      <StyledUl>
         {queryFilms.map(el => (
           <li key={el.id}>
-            <Link state={{ from: location }} to={`/movies/${el.id}`}>
+            <Link state={{ from: location ?? '/' }} to={`/movies/${el.id}`}>
               {el.title}
             </Link>
           </li>
         ))}
-      </ul>
+      </StyledUl>
     </section>
   );
 }

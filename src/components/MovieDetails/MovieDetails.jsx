@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import { requestFilmDetails } from '../../services/api';
 import { GoBack } from 'components/GoBack/GoBack';
+import { StyledDiv, StyledDivRight, StyledIMGMain, StyledP, StyledUl } from './MovieDetails.styled';
 
 export default function MovieDetails() {
+  const location = useLocation();
   const { movieId } = useParams();
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');
@@ -14,9 +16,8 @@ export default function MovieDetails() {
   useEffect(() => {
     async function fetchFilmByID(id) {
       try {
-        const {
-          poster_path, title, vote_average, overview, genres,
-        } = await requestFilmDetails(id);
+        const { poster_path, title, vote_average, overview, genres } =
+          await requestFilmDetails(id);
 
         setSrc('https://image.tmdb.org/t/p/w500/' + poster_path);
         setTitle(title);
@@ -38,22 +39,36 @@ export default function MovieDetails() {
       <GoBack />
       {title && (
         <>
-          <img src={src} alt={title} />
-          <h1>{title}</h1>
-          <p>User Score: {vote}%</p>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-          <h3>Genres</h3>
-          <p>{genres}</p>
-          <p>Additional information</p>
-          <ul>
+          <StyledDiv>
+            <StyledIMGMain src={src} alt={title} />
+            <StyledDivRight>
+              <h1>{title}</h1>
+              <p>User Score: {vote}%</p>
+              <h2>Overview</h2>
+              <p>{overview}</p>
+              <h3>Genres</h3>
+              <p>{genres}</p>
+            </StyledDivRight>
+          </StyledDiv>
+          <StyledP>Additional information</StyledP>
+          <StyledUl>
             <li>
-              <NavLink to="cast">Cast</NavLink>
+              <NavLink
+                state={{ from: location ?? '/'}}
+                to="cast"
+              >
+                Cast
+              </NavLink>
             </li>
             <li>
-              <NavLink to="reviews">reviews</NavLink>
+              <NavLink
+                state={{ from: location ?? '/'}}
+                to="reviews"
+              >
+                Reviews
+              </NavLink>
             </li>
-          </ul>
+          </StyledUl>
         </>
       )}
       {!title && <p>Sorry! No such movie.</p>}

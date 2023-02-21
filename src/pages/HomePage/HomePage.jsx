@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { requestTrendingFilms } from '../../services/api';
+import { StyledUl } from './HomePage.styled';
 
 const PAGE = 1;
 
@@ -24,15 +25,15 @@ export default function HomePage() {
   return (
     <section>
       <h1>Trending today</h1>
-      <ul>
+      <StyledUl>
         {trendingFilms.map(el => (
           <li key={el.id}>
-            <Link state={{ from: location }} to={`/movies/${el.id}`}>
+            <Link state={{ from: location ?? '/' }} to={`/movies/${el.id}`}>
               {el.title}
             </Link>
           </li>
         ))}
-      </ul>
+      </StyledUl>
     </section>
   );
 }

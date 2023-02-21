@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { requestFilmCast } from 'services/api';
+import { StyledIMG } from './Cast.styled';
 
 export function Cast() {
   const [cast, setCast] = useState([]);
@@ -28,7 +29,7 @@ export function Cast() {
           : '';
         return (
           <li key={nanoid()}>
-            <img src={src} alt={name} />
+            <StyledIMG src={src} alt={name} />
             <p>{name}</p>
             <p>Character: {character}</p>
           </li>

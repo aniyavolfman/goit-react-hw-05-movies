@@ -1,14 +1,22 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { StyledDiv } from './GoBack.styled';
 
-export function GoBack () {
+export function GoBack() {
   const location = useLocation();
 
   return (
     <Link
-      to={location.state?.from || location}
+      style={{
+        textDecoration: 'none',
+      }}
+      to={location.state?.from ?? '/'}
     >
-      Go Back
+      <StyledDiv>
+        <AiOutlineArrowLeft />
+        Go Back
+      </StyledDiv>
     </Link>
   );
-};
+}

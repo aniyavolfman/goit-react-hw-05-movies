@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { SearchForm } from 'components/SearchForm/SearchForm'
+import { SearchForm } from 'components/SearchForm/SearchForm';
 import { requestPostsByQuery } from 'services/api';
 import { StyledUl } from './MoviesPage.styled';
 

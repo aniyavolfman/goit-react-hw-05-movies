@@ -53,18 +53,12 @@ export default function MovieDetails() {
           <StyledP>Additional information</StyledP>
           <StyledUl>
             <li>
-              <NavLink
-                state={{ from: location ?? '/'}}
-                to="cast"
-              >
+              <NavLink state={location.state} to="cast">
                 Cast
               </NavLink>
             </li>
             <li>
-              <NavLink
-                state={{ from: location ?? '/'}}
-                to="reviews"
-              >
+              <NavLink state={location.state} to="reviews">
                 Reviews
               </NavLink>
             </li>

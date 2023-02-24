@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import { requestFilmDetails } from '../../services/api';
 import { GoBack } from 'components/GoBack/GoBack';
@@ -66,7 +66,9 @@ export default function MovieDetails() {
         </>
       )}
       {!title && <p>Sorry! No such movie.</p>}
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 }
